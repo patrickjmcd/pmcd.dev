@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 type ICTABannerProps = {
   title: string;
   subtitle: string;
-  button?: ReactNode;
+  button?: ReactNode | string;
 };
 
 const CTABanner = (props: ICTABannerProps) => (
