@@ -1,6 +1,14 @@
 name: build
 
-on: [ push ]
+on:
+  push:
+    branches:
+      - main
+  release:
+
+permissions:
+  contents: write
+  packages: write
 
 env:
   TAG: ${{ github.ref_name }}
