@@ -42,7 +42,7 @@ jobs:
           .
 
   update-k8s-flux:
-    name: "Update k8s-flux"
+    name: "Update k8s-argo"
     runs-on: ubuntu-latest
     needs: build-image
     steps:
