@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/patrickjmcd/pmcd.dev/compare/v1.1.0...v1.2.0) (2024-02-01)
+
+
+### Features
+
+* add links for logos in previews ([801a342](https://github.com/patrickjmcd/pmcd.dev/commit/801a34223e44651c739273217b135627c2c5c336))
+
 ## [1.1.0](https://github.com/patrickjmcd/pmcd.dev/compare/v1.0.1...v1.1.0) (2024-02-01)
 
 
