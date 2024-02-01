@@ -55,7 +55,7 @@ jobs:
       - name: Update Kubernetes resources & commit & push
         run: |
           cd k8s-argo/apps/pmcd.dev
-          kustomize edit set image pmcd-dev=ghcr.io/patrickjmcd/pmcd.dev:${{ github.sha }}
+          kustomize edit set image pmcd-dev=ghcr.io/patrickjmcd/pmcd.dev:${{ github.ref_name }}
           cat kustomization.yaml
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
