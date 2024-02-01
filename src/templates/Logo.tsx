@@ -1,4 +1,5 @@
-import { AppConfig } from '../utils/AppConfig';
+import { AppConfig } from '@/utils/AppConfig';
+import Image from 'next/image';
 
 type ILogoProps = {
   xl?: boolean;
@@ -12,6 +13,12 @@ const Logo = (props: ILogoProps) => {
 
   return (
     <span className={`inline-flex items-center text-gray-900 ${fontStyle}`}>
+      <Image
+          src="/images/pmcd-llc-logo.png"
+          alt="PMCD LLC Logo"
+          width={size}
+          height={size}
+      />
       {/*<svg*/}
       {/*  className="mr-1 stroke-current text-primary-500"*/}
       {/*  xmlns="http://www.w3.org/2000/svg"*/}
