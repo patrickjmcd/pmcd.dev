@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/patrickjmcd/pmcd.dev/compare/v1.0.0...v1.0.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* build only on tag ([a2ffc11](https://github.com/patrickjmcd/pmcd.dev/commit/a2ffc113f0fa0dc33bd2874129d2f5fe4ab860a2))
+
 ## 1.0.0 (2024-01-31)
 
 
