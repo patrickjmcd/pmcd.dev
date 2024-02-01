@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/patrickjmcd/pmcd.dev/compare/v1.2.0...v1.2.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* remove unused package-name property ([eb8b256](https://github.com/patrickjmcd/pmcd.dev/commit/eb8b256cc2c1fbceda87409a32bf00fe35e52721))
+* transparent backgrounds on logos ([322afab](https://github.com/patrickjmcd/pmcd.dev/commit/322afab004c8deb33d221b06601d6357600500bd))
+
 ## [1.2.0](https://github.com/patrickjmcd/pmcd.dev/compare/v1.1.0...v1.2.0) (2024-02-01)
 
 
