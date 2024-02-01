@@ -17,5 +17,4 @@ jobs:
         id: release
         with:
           release-type: node
-          package-name: pmcd-dev
           token: ${{ secrets.PAT }}
