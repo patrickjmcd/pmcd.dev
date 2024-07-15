@@ -51,7 +51,7 @@ devDependencies:
     version: 8.4.33
   tailwindcss:
     specifier: ^3.4.1
-    version: 3.4.4
+    version: 3.4.5
   typescript:
     specifier: ^5
     version: 5.0.2
@@ -2488,7 +2488,7 @@ packages:
       postcss: ^8.4.38
     dependencies:
       postcss: 8.4.33
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.1
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -2523,7 +2523,7 @@ packages:
       postcss: ^8.4.31
     dependencies:
       postcss: 8.4.33
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.1
     dev: true
 
   /postcss-discard-duplicates@7.0.0(postcss@8.4.33):
@@ -2621,7 +2621,7 @@ packages:
       caniuse-api: 3.0.0
       cssnano-utils: 5.0.0(postcss@8.4.33)
       postcss: 8.4.33
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.1
     dev: true
 
   /postcss-minify-font-values@7.0.0(postcss@8.4.33):
@@ -2666,7 +2666,7 @@ packages:
     dependencies:
       cssesc: 3.0.0
       postcss: 8.4.33
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.1
     dev: true
 
   /postcss-nested@6.0.1(postcss@8.4.33):
@@ -2676,7 +2676,7 @@ packages:
       postcss: ^8.2.14
     dependencies:
       postcss: 8.4.33
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.1
     dev: true
 
   /postcss-normalize-charset@7.0.0(postcss@8.4.33):
@@ -2801,8 +2801,8 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-selector-parser@6.1.0:
-    resolution: {integrity: sha512-UMz42UD0UY0EApS0ZL9o1XnLhSTtvvvLe5Dc2H2O56fvRZi+KulDyf5ctDhhtYJBGKStV2FL1fy6253cmLgqVQ==}
+  /postcss-selector-parser@6.1.1:
+    resolution: {integrity: sha512-b4dlw/9V8A71rLIDsSwVmak9z2DuBUB7CA1/wSdelNEzqsjoSPeADTWNO09lpH49Diy3/JIZ2bSPB1dI3LJCHg==}
     engines: {node: '>=4'}
     dependencies:
       cssesc: 3.0.0
@@ -2827,7 +2827,7 @@ packages:
       postcss: ^8.4.31
     dependencies:
       postcss: 8.4.33
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.1
     dev: true
 
   /postcss-value-parser@4.2.0:
@@ -3199,7 +3199,7 @@ packages:
     dependencies:
       browserslist: 4.23.2
       postcss: 8.4.33
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.1
     dev: true
 
   /sucrase@3.35.0:
@@ -3242,8 +3242,8 @@ packages:
       picocolors: 1.0.1
     dev: true
 
-  /tailwindcss@3.4.4:
-    resolution: {integrity: sha512-ZoyXOdJjISB7/BcLTR6SEsLgKtDStYyYZVLsUtWChO4Ps20CBad7lfJKVDiejocV4ME1hLmyY0WJE3hSDcmQ2A==}
+  /tailwindcss@3.4.5:
+    resolution: {integrity: sha512-DlTxttYcogpDfx3tf/8jfnma1nfAYi2cBUYV2YNoPPecwmO3YGiFlOX9D8tGAu+EDF38ryBzvrDKU/BLMsUwbw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -3266,7 +3266,7 @@ packages:
       postcss-js: 4.0.1(postcss@8.4.33)
       postcss-load-config: 4.0.2(postcss@8.4.33)
       postcss-nested: 6.0.1(postcss@8.4.33)
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.1
       resolve: 1.22.8
       sucrase: 3.35.0
     transitivePeerDependencies:
