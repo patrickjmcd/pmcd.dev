@@ -1,9 +1,45 @@
-const About = () => {
+async function getGitHubStats(): Promise<{ repos: number; commits: number }> {
+  const since = new Date();
+  since.setDate(since.getDate() - 90);
+  const dateStr = since.toISOString().split('T')[0];
+
+  const fetchOpts = {
+    headers: { Accept: 'application/vnd.github+json' },
+    next: { revalidate: 86400 } as const,
+  };
+
+  const [repoRes, commitRes] = await Promise.allSettled([
+    fetch('https://api.github.com/users/patrickjmcd', fetchOpts),
+    fetch(
+      `https://api.github.com/search/commits?q=author:patrickjmcd+committer-date:>${dateStr}`,
+      fetchOpts,
+    ),
+  ]);
+
+  let repos = 0;
+  let commits = 0;
+
+  if (repoRes.status === 'fulfilled' && repoRes.value.ok) {
+    const data = await repoRes.value.json();
+    repos = data.public_repos ?? 0;
+  }
+
+  if (commitRes.status === 'fulfilled' && commitRes.value.ok) {
+    const data = await commitRes.value.json();
+    commits = data.total_count ?? 0;
+  }
+
+  return { repos, commits };
+}
+
+const About = async () => {
+  const { repos, commits } = await getGitHubStats();
+
   const stats = [
     { value: '10+', label: 'Years Experience' },
-    { value: '50+', label: 'Projects Completed' },
-    { value: '15+', label: 'Technologies' },
-    { value: '100%', label: 'Passion' },
+    { value: repos > 0 ? repos.toLocaleString() : '110+', label: 'Open Source Projects' },
+    { value: '5+', label: 'Languages in Production' },
+    { value: commits > 0 ? commits.toLocaleString() : '—', label: 'Public Commits (Last 90 Days)' },
   ];
 
   return (

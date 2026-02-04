@@ -9,6 +9,7 @@ const Footer = () => {
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Blog', href: 'https://blog.pmcd.dev' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -65,6 +66,8 @@ const Footer = () => {
               <Link
                 key={link.name}
                 href={link.href}
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="text-gray-400 hover:text-white transition-colors text-sm"
               >
                 {link.name}

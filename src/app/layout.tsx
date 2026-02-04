@@ -9,11 +9,13 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/images/logo/favicon.ico' },
+      { url: '/images/logo/favicon.svg', type: 'image/svg+xml' },
       { url: '/images/logo/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/images/logo/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
     apple: '/images/logo/apple-touch-icon.png',
   },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: AppConfig.title,
     description: AppConfig.description,

@@ -59,6 +59,14 @@ const Hero = () => {
               Projects
             </Link>
             <Link
+              href="https://blog.pmcd.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors hidden sm:block"
+            >
+              Blog
+            </Link>
+            <Link
               href="#contact"
               className="btn-gradient text-sm px-5 py-2"
             >
@@ -110,8 +118,8 @@ const Hero = () => {
               <Link
                 key={social.name}
                 href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={social.href.startsWith('mailto') ? undefined : '_blank'}
+                rel={social.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
                 className="text-gray-500 hover:text-white transition-colors duration-300 hover:scale-110 transform"
                 aria-label={social.name}
               >
