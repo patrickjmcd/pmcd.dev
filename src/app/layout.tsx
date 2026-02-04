@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/react';
 
 import '@/styles/global.css';
 import { AppConfig } from '@/utils/AppConfig';
@@ -33,7 +34,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang={AppConfig.locale}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
