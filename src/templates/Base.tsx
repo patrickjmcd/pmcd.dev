@@ -1,18 +1,21 @@
-import { Meta } from '@/layout/Meta';
-import { AppConfig } from '@/utils/AppConfig';
+import { AnimatedGradient } from '@/background/AnimatedGradient';
+
+import { About } from './About';
 import { Banner } from './Banner';
 import { Footer } from './Footer';
 import { Hero } from './Hero';
-import { VerticalFeatures } from './VerticalFeatures';
+import { Projects } from './Projects';
+import { Skills } from './Skills';
 
 const Base = () => (
-  <div className="text-gray-600 antialiased">
-    <Meta title={AppConfig.title} description={AppConfig.description} />
+  <AnimatedGradient>
     <Hero />
-    <VerticalFeatures />
+    <About />
+    <Skills />
+    <Projects />
     <Banner />
     <Footer />
-  </div>
+  </AnimatedGradient>
 );
 
 export { Base };
