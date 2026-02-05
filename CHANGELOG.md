@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.0](https://github.com/patrickjmcd/pmcd.dev/compare/v1.2.1...v1.3.0) (2026-02-05)
+
+
+### Features
+
+* complete new design ([f0de895](https://github.com/patrickjmcd/pmcd.dev/commit/f0de895bc2a889d9713dacf1000ae9d1f697fa91))
+* new design ([84fe6de](https://github.com/patrickjmcd/pmcd.dev/commit/84fe6def76ed8bc5687d2358079f5a75946d1cf3))
+* redesign ([da06b6f](https://github.com/patrickjmcd/pmcd.dev/commit/da06b6f188cb66e014f19c52881af6720cd16959))
+
+
+### Bug Fixes
+
+* upgrade packages ([a3a42c5](https://github.com/patrickjmcd/pmcd.dev/commit/a3a42c57a4290cc74bfe2a4b1efbbccb6c3d5c3d))
+* upgrade packages ([534e0d2](https://github.com/patrickjmcd/pmcd.dev/commit/534e0d2ec98c95d964159a26366ef4ddfc41b31d))
+
 ## [1.2.1](https://github.com/patrickjmcd/pmcd.dev/compare/v1.2.0...v1.2.1) (2024-02-01)
 
 
