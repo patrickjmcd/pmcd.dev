@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import siteMetadata from '@/siteMetadata';
 
 const Banner = () => {
   return (
@@ -22,18 +23,20 @@ const Banner = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animate-delay-200">
-              <Link
-                href="mailto:me@pmcd.dev"
-                className="btn-gradient"
-              >
+              <Link href={`mailto:${siteMetadata.email}`} className="btn-gradient">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
                 </svg>
                 Say Hello
               </Link>
 
               <Link
-                href="https://github.com/patrickjmcd"
+                href={siteMetadata.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 font-semibold text-white border border-white/20 rounded-full hover:bg-white/10 transition-all duration-300 inline-flex items-center"

@@ -1,4 +1,4 @@
-import { AnimatedGradient } from '@/background/AnimatedGradient';
+import { AnimatedGradient } from '@/components/AnimatedGradient';
 
 import { About } from './About';
 import { Banner } from './Banner';

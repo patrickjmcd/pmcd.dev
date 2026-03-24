@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import siteMetadata from '@/siteMetadata';
+
 const Projects = () => {
   const projects = [
     {
@@ -139,7 +141,7 @@ const Projects = () => {
 
         <div className="text-center mt-12 animate-fade-in-up">
           <Link
-            href="https://github.com/patrickjmcd"
+            href={siteMetadata.github!}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"

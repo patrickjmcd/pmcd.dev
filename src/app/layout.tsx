@@ -1,8 +1,16 @@
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
+import { Lora } from 'next/font/google';
 
 import '@/styles/global.css';
 import { AppConfig } from '@/utils/AppConfig';
+import { ThemeProvider } from '@/components/ThemeProvider';
+
+const lora = Lora({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: AppConfig.title,
@@ -33,9 +41,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={AppConfig.locale}>
+    <html lang={AppConfig.locale} className={`dark ${lora.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Prevent flash of wrong theme */}
+        <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: required for anti-FOUC theme init
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('theme');if(t==='claude')document.documentElement.setAttribute('data-theme','claude');}catch(e){}`,
+          }}
+        />
+      </head>
       <body>
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>
