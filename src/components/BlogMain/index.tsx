@@ -5,8 +5,6 @@ import Tag from '@/components/Tag';
 import siteMetadata from '@/siteMetadata';
 import { Leaflet } from '@/utils/RichText';
 
-const MAX_DISPLAY = 5;
-
 export default function BlogMain({ posts }: { posts: Leaflet[] }) {
   return (
     <div className="max-w-3xl mx-auto xl:max-w-5xl xl:px-0 px-4 py-16">
@@ -19,7 +17,7 @@ export default function BlogMain({ posts }: { posts: Leaflet[] }) {
         {!posts.length && (
           <p className="text-gray-500">No posts found.</p>
         )}
-        {posts.slice(0, MAX_DISPLAY).map((post) => {
+        {posts.map((post) => {
           const { value, date, summary, tags } = post;
           const rkey = post.uri.split('/').pop();
           return (
@@ -71,17 +69,6 @@ export default function BlogMain({ posts }: { posts: Leaflet[] }) {
         })}
       </ul>
 
-      {posts.length > MAX_DISPLAY && (
-        <div className="flex justify-end mt-8">
-          <Link
-            href="/blog"
-            className="text-primary-500 hover:text-primary-400 text-sm font-medium flex items-center gap-1 transition-colors"
-            aria-label="All posts"
-          >
-            All Posts <span aria-hidden="true">→</span>
-          </Link>
-        </div>
-      )}
     </div>
   );
 }

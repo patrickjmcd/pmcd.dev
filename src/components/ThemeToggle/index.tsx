@@ -28,14 +28,19 @@ export const ThemeToggle = () => {
   const [theme, setTheme] = useState<Theme>('dark');
 
   useEffect(() => {
-    // Read persisted theme on mount
-    let saved: Theme = 'dark';
+    const getSystemTheme = (): Theme =>
+      window.matchMedia('(prefers-color-scheme: light)').matches ? 'claude' : 'dark';
+
+    // Read persisted theme on mount, fall back to system preference
+    let initial: Theme = 'dark';
     try {
       const stored = localStorage.getItem('theme');
-      if (stored === 'claude') saved = 'claude';
-    } catch {}
-    setTheme(saved);
-    document.documentElement.setAttribute('data-theme', saved);
+      initial = stored === 'claude' || stored === 'dark' ? stored : getSystemTheme();
+    } catch {
+      initial = getSystemTheme();
+    }
+    setTheme(initial);
+    document.documentElement.setAttribute('data-theme', initial);
 
     // Sync with other toggles on the same page via storage events
     const onStorage = (e: StorageEvent) => {
@@ -45,7 +50,24 @@ export const ThemeToggle = () => {
       }
     };
     window.addEventListener('storage', onStorage);
-    return () => window.removeEventListener('storage', onStorage);
+
+    // Follow system preference when no manual override is set
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    const onSystemChange = (e: MediaQueryListEvent) => {
+      try {
+        if (!localStorage.getItem('theme')) {
+          const next: Theme = e.matches ? 'claude' : 'dark';
+          setTheme(next);
+          document.documentElement.setAttribute('data-theme', next);
+        }
+      } catch {}
+    };
+    mq.addEventListener('change', onSystemChange);
+
+    return () => {
+      window.removeEventListener('storage', onStorage);
+      mq.removeEventListener('change', onSystemChange);
+    };
   }, []);
 
   const toggle = () => {

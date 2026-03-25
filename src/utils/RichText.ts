@@ -1,14 +1,18 @@
 import type { ListRecord } from '@atproto/lex';
 import siteMetadata from '@/siteMetadata';
 import * as pub from '@/util/pub';
+import * as siteStandard from '@/util/site/standard';
 import { facet } from '@/util/pub/leaflet/richtext';
 
-export type Leaflet = ListRecord<pub.leaflet.document.Main> & {
+type AnyLeafletRecord = ListRecord<pub.leaflet.document.Main> | ListRecord<siteStandard.document.Main>;
+
+export type Leaflet = AnyLeafletRecord & {
   summary?: string;
   date?: string;
   tags: string[];
   rkey: string;
   publication: string;
+  pages: pub.leaflet.document.Main['pages'];
   structuredData: {
     '@context': string;
     '@type': string;
@@ -19,21 +23,31 @@ export type Leaflet = ListRecord<pub.leaflet.document.Main> & {
   };
 };
 
-export function asLeaflet(leaflet: ListRecord<pub.leaflet.document.Main>): Leaflet {
+export function asLeaflet(leaflet: AnyLeafletRecord): Leaflet {
   const rkey = leaflet.uri.split('/').pop() || '';
+  const v = leaflet.value;
+
+  // site.standard.document nests pages under value.content.pages;
+  // pub.leaflet.document has pages directly on value.pages.
+  const pages =
+    'pages' in v
+      ? v.pages
+      : ((v.content as { pages?: pub.leaflet.document.Main['pages'] })?.pages ?? []);
+
   return {
     ...leaflet,
-    summary: leaflet.value.description,
-    date: leaflet.value.publishedAt,
-    tags: leaflet.value.tags ?? [],
+    pages,
+    summary: v.description,
+    date: v.publishedAt,
+    tags: v.tags ?? [],
     rkey,
-    publication: leaflet.value.author.split(':').pop() || '',
+    publication: ('author' in v ? v.author : v.site)?.split(':').pop() ?? '',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
-      headline: leaflet.value.title,
-      datePublished: leaflet.value.publishedAt,
-      description: leaflet.value.description,
+      headline: v.title,
+      datePublished: v.publishedAt,
+      description: v.description,
       url: `${siteMetadata.siteUrl}/${rkey}`,
     },
   };

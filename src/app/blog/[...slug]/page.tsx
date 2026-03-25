@@ -97,7 +97,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
             Leaflet
           </a>
         </p>
-        <LeafletRenderer pages={post.value.pages as linearDocument.Main[]} />
+        <LeafletRenderer pages={post.pages as linearDocument.Main[]} />
       </PostLayout>
     </>
   );

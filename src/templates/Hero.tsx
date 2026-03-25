@@ -1,10 +1,23 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
 
 import { ThemeToggle } from '@/components/ThemeToggle';
 import siteMetadata from '@/siteMetadata';
 import { Logo } from './Logo';
 
+const navLinks = [
+  { href: '#about', label: 'About' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#projects', label: 'Projects' },
+  { href: '/resume', label: 'Resume' },
+  { href: '/blog', label: 'Blog' },
+];
+
 const Hero = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const socialLinks = [
     {
       name: 'GitHub',
@@ -43,46 +56,79 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex flex-col">
       {/* Navigation */}
-      <nav className="py-6 px-4 animate-fade-in">
+      <nav className="py-6 px-4 animate-fade-in relative z-50">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Logo xl />
           <div className="flex items-center gap-6">
-            <Link
-              href="#about"
-              className="text-gray-400 hover:text-white transition-colors hidden sm:block"
-            >
-              About
-            </Link>
-            <Link
-              href="#skills"
-              className="text-gray-400 hover:text-white transition-colors hidden sm:block"
-            >
-              Skills
-            </Link>
-            <Link
-              href="#projects"
-              className="text-gray-400 hover:text-white transition-colors hidden sm:block"
-            >
-              Projects
-            </Link>
-            <Link
-              href="/resume"
-              className="text-gray-400 hover:text-white transition-colors hidden sm:block"
-            >
-              Resume
-            </Link>
-            <Link
-              href="/blog"
-              className="text-gray-400 hover:text-white transition-colors hidden sm:block"
-            >
-              Blog
-            </Link>
-            <Link href="#contact" className="btn-gradient text-sm px-5 py-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-gray-400 hover:text-white transition-colors hidden sm:block"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link href="#contact" className="btn-gradient text-sm px-5 py-2 hidden sm:inline-flex">
               Contact
             </Link>
             <ThemeToggle />
+            {/* Hamburger — mobile only */}
+            <button
+              type="button"
+              className="sm:hidden p-2 text-gray-400 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+              onClick={() => setMenuOpen((o) => !o)}
+            >
+              {menuOpen ? (
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
           </div>
         </div>
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div
+            className="sm:hidden absolute top-full left-0 right-0 border-t border-white/10 px-6 py-4 flex flex-col gap-4"
+            style={{ backgroundColor: 'var(--color-dark-200)' }}
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-gray-400 hover:text-white transition-colors text-lg py-1 px-4"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="#contact"
+              className="btn-gradient text-sm px-5 py-2 text-center mt-2 self-center mx-auto w-fit"
+              onClick={() => setMenuOpen(false)}
+            >
+              Contact
+            </Link>
+          </div>
+        )}
       </nav>
 
       {/* Hero Content */}

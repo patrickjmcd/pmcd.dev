@@ -47,7 +47,7 @@ export default function RootLayout({
         <script
           // biome-ignore lint/security/noDangerouslySetInnerHtml: required for anti-FOUC theme init
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('theme');if(t==='claude')document.documentElement.setAttribute('data-theme','claude');}catch(e){}`,
+            __html: `try{var t=localStorage.getItem('theme');var theme=t==='claude'||t==='dark'?t:(window.matchMedia('(prefers-color-scheme: light)').matches?'claude':'dark');document.documentElement.setAttribute('data-theme',theme);}catch(e){}`,
           }}
         />
       </head>

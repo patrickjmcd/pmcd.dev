@@ -1,7 +1,8 @@
 {
   "version": 1,
   "lexicons": [
-    "pub.leaflet.document"
+    "pub.leaflet.document",
+    "site.standard.document"
   ],
   "resolutions": {
     "com.atproto.repo.strongRef": {
@@ -95,6 +96,10 @@
     "pub.leaflet.theme.color": {
       "uri": "at://did:plc:btxrwcaeyodrap5mnjw2fvmz/com.atproto.lexicon.schema/pub.leaflet.theme.color",
       "cid": "bafyreif6nuaxeomguoi7mtlaiasup2n4ukp5ytfs4s5unqlpgpkh4yv5ua"
+    },
+    "site.standard.document": {
+      "uri": "at://did:plc:re3ebnp5v7ffagz6rb6xfei4/com.atproto.lexicon.schema/site.standard.document",
+      "cid": "bafyreifzalrdierm2q4yddul2dn7ei2x2znmucsejxa6aeppklecrt745q"
     }
   }
 }
