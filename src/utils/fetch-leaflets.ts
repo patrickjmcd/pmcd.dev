@@ -14,7 +14,7 @@ const fetchLeaflets = async (): Promise<Leaflet[]> => {
   const invalids: LexMap[] = [];
 
   // Helper to paginate any collection via typed client
-  async function listAll<T>(collection: Parameters<typeof client.list>[0]) {
+  async function listAll<T extends LexMap>(collection: Parameters<typeof client.list>[0]) {
     const records: ListRecord<T>[] = [];
     let cursor: string | undefined;
     let i = 0;

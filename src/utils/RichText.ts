@@ -29,9 +29,9 @@ export function asLeaflet(leaflet: AnyLeafletRecord): Leaflet {
 
   // site.standard.document nests pages under value.content.pages;
   // pub.leaflet.document has pages directly on value.pages.
-  const pages =
+  const pages: pub.leaflet.document.Main['pages'] =
     'pages' in v
-      ? v.pages
+      ? ((v as pub.leaflet.document.Main).pages ?? [])
       : ((v.content as { pages?: pub.leaflet.document.Main['pages'] })?.pages ?? []);
 
   return {
@@ -41,7 +41,7 @@ export function asLeaflet(leaflet: AnyLeafletRecord): Leaflet {
     date: v.publishedAt,
     tags: v.tags ?? [],
     rkey,
-    publication: ('author' in v ? v.author : v.site)?.split(':').pop() ?? '',
+    publication: String('author' in v ? (v as pub.leaflet.document.Main).author : (v as siteStandard.document.Main).site).split(':').pop() ?? '',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
