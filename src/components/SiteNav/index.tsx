@@ -86,7 +86,8 @@ const SiteNav = ({ action }: SiteNavProps) => {
             <li key={link.href} className="border-b-2 border-ink last:border-b-0">
               <Link
                 href={link.href}
-                className="block px-4 py-3 font-mono font-bold uppercase tracking-wide hover:bg-lemon hover:text-coal"
+                className={`block px-4 py-3 font-mono font-bold uppercase tracking-wide hover:bg-lemon hover:text-coal ${isCurrent(link.href) ? 'bg-ink text-paper' : ''}`}
+                aria-current={isCurrent(link.href) ? 'page' : undefined}
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
