@@ -30,7 +30,7 @@ const ScrollTopAndComment = () => {
           type="button"
           aria-label="Scroll To Comment"
           onClick={handleScrollToComment}
-          className="glass-card p-2 rounded-full text-gray-400 hover:text-primary-400 hover:border-primary-500/30 transition-all duration-300"
+          className="nb-btn nb-btn-plain nb-btn-sm w-10 h-10 p-0"
         >
           <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -45,7 +45,7 @@ const ScrollTopAndComment = () => {
         type="button"
         aria-label="Scroll To Top"
         onClick={handleScrollTop}
-        className="glass-card p-2 rounded-full text-gray-400 hover:text-primary-400 hover:border-primary-500/30 transition-all duration-300"
+        className="nb-btn nb-btn-plain nb-btn-sm w-10 h-10 p-0"
       >
         <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
           <path

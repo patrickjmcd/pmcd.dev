@@ -36,18 +36,17 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
   return (
     <SectionContainer>
       <ScrollTopAndComment />
-      <article className="py-12 animate-fade-in">
-        {/* Header */}
-        <header className="mb-10 space-y-4 text-center max-w-2xl mx-auto">
+      <article className="py-16">
+        <header className="mb-12 space-y-5">
           <time
             dateTime={date}
-            className="block text-sm font-medium text-primary-400 tracking-wide"
+            className="inline-block font-mono text-xs font-bold uppercase px-2 py-1 bg-lemon text-coal border-2 border-ink"
           >
             {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
           </time>
           <PageTitle>{content.value.title}</PageTitle>
           {tags?.length > 0 && (
-            <div className="flex flex-wrap justify-center gap-2 pt-2">
+            <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <Tag key={tag} text={tag} />
               ))}
@@ -55,53 +54,37 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           )}
         </header>
 
-        {/* Content */}
-        <div className="border-t border-white/10 pt-10">
-          <div className="prose prose-invert max-w-none pb-10">{children}</div>
-        </div>
+        <div className="border-t-[3px] border-ink pt-10 pb-12">{children}</div>
 
-        {/* Comments */}
         {siteMetadata.comments && (
-          <div className="border-t border-white/10 py-10 text-center text-gray-400" id="comment">
+          <div className="border-t-[3px] border-ink py-10 text-center" id="comment">
             <Comments slug={content.rkey} />
           </div>
         )}
 
-        {/* Footer nav */}
-        <footer className="border-t border-white/10 pt-8 space-y-6">
+        <footer className="border-t-[3px] border-ink pt-10 space-y-8">
           {(next || prev) && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {prev?.rkey && (
-                <Link
-                  href={`/blog/${prev.rkey}`}
-                  className="glass-card p-4 group hover:border-primary-500/30 transition-all duration-300"
-                >
-                  <div className="text-xs text-gray-500 mb-1 uppercase tracking-wide">← Previous</div>
-                  <div className="text-sm text-gray-200 group-hover:text-primary-400 transition-colors leading-snug">
-                    {prev.value.title}
-                  </div>
+                <Link href={`/blog/${prev.rkey}`} className="nb-card nb-press p-5">
+                  <div className="font-mono text-xs font-bold uppercase mb-2">← Previous</div>
+                  <div className="font-display leading-snug">{prev.value.title}</div>
                 </Link>
               )}
               {next?.rkey && (
                 <Link
                   href={`/blog/${next.rkey}`}
-                  className={`glass-card p-4 group hover:border-primary-500/30 transition-all duration-300 text-right${!prev?.rkey ? ' sm:col-start-2' : ''}`}
+                  className={`nb-card nb-press p-5 text-right${!prev?.rkey ? ' sm:col-start-2' : ''}`}
                 >
-                  <div className="text-xs text-gray-500 mb-1 uppercase tracking-wide">Next →</div>
-                  <div className="text-sm text-gray-200 group-hover:text-primary-400 transition-colors leading-snug">
-                    {next.value.title}
-                  </div>
+                  <div className="font-mono text-xs font-bold uppercase mb-2">Next →</div>
+                  <div className="font-display leading-snug">{next.value.title}</div>
                 </Link>
               )}
             </div>
           )}
 
-          <Link
-            href="/blog"
-            className="text-primary-500 hover:text-primary-400 text-sm font-medium flex items-center gap-1 transition-colors"
-            aria-label="Back to the blog"
-          >
-            ← Back to the blog
+          <Link href="/blog" className="nb-btn nb-btn-plain nb-btn-sm">
+            ← All posts
           </Link>
         </footer>
       </article>

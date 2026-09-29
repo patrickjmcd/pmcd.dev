@@ -1,3 +1,8 @@
+import Link from 'next/link';
+
+import { SectionHeading } from '@/components/SectionHeading';
+import siteMetadata from '@/siteMetadata';
+
 async function getGitHubStats(): Promise<{ repos: number; commits: number }> {
   const since = new Date();
   since.setDate(since.getDate() - 90);
@@ -36,70 +41,62 @@ const About = async () => {
   const { repos, commits } = await getGitHubStats();
 
   const stats = [
-    { value: '10+', label: 'Years Experience' },
-    { value: repos > 0 ? repos.toLocaleString() : '110+', label: 'Open Source Projects' },
-    { value: '5+', label: 'Languages in Production' },
-    { value: commits > 0 ? commits.toLocaleString() : '—', label: 'Public Commits (Last 90 Days)' },
+    { value: '10+', label: 'years writing software', color: 'bg-lemon' },
+    {
+      value: repos > 0 ? repos.toLocaleString() : '110+',
+      label: 'public repos on GitHub',
+      color: 'bg-pool',
+    },
+    { value: '5+', label: 'languages shipped to prod', color: 'bg-mint' },
+    {
+      value: commits > 0 ? commits.toLocaleString() : '—',
+      label: 'public commits, last 90 days',
+      color: 'bg-punch',
+    },
   ];
 
   return (
-    <section id="about" className="py-24 px-4">
+    <section id="about" className="py-24 px-4 scroll-mt-16">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            About <span className="gradient-text">Me</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Building digital experiences that make a difference
-          </p>
-        </div>
+        <SectionHeading kicker="01 / About" title="Hey, I'm Patrick." />
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Bio Card */}
-          <div className="glass-card p-8 animate-fade-in-up">
-            <h3 className="text-2xl font-semibold mb-4 text-white">
-              Hello! I&apos;m Patrick McDonagh
-            </h3>
-            <p className="text-gray-300 mb-4 leading-relaxed">
-              I&apos;m a software developer based in Kansas City, MO with a passion for
-              building elegant solutions to complex problems. I specialize in
-              full-stack development, API design, and IoT systems &mdash; from
-              tracking lake levels to monitoring utility usage.
+        <div className="grid lg:grid-cols-[3fr_2fr] gap-8 items-start">
+          <div className="nb-card p-8 text-lg leading-relaxed space-y-5">
+            <p>
+              I&apos;m a software developer in Kansas City. Most of my work is full-stack web
+              development, API design, and IoT systems &mdash; the kind of projects where data
+              starts on a sensor somewhere and ends up on a dashboard. At home that looks like
+              tracking lake levels and keeping an eye on our utility usage.
             </p>
-            <p className="text-gray-300 mb-4 leading-relaxed">
-              When I&apos;m not coding, you can find me playing music, riding my
-              bike, spending time with my family, or writing on my{' '}
-              <a
-                href="https://blog.pmcd.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary-400 hover:text-primary-300 transition-colors"
-              >
-                blog
+            <p>
+              Away from the keyboard I play music, ride my bike, hang out with my family, and
+              occasionally write things down on{' '}
+              <Link href="/blog" className="nb-link font-semibold">
+                the blog
+              </Link>
+              .
+            </p>
+            <p>
+              I&apos;m taking on consulting work right now. If you&apos;ve got something that sounds
+              like a fit,{' '}
+              <a href={`mailto:${siteMetadata.email}`} className="nb-link font-semibold">
+                send me an email
               </a>
               .
             </p>
-            <p className="text-gray-300 leading-relaxed">
-              I&apos;m currently available for consulting opportunities and exciting
-              new projects. Let&apos;s build something amazing together!
-            </p>
           </div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {stats.map((stat, index) => (
+          <dl className="grid grid-cols-2 gap-4">
+            {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="glass-card p-6 text-center animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className={`${stat.color} text-coal border-[3px] border-ink shadow-[4px_4px_0_0_var(--ink)] p-5 flex flex-col-reverse`}
               >
-                <div className="text-4xl font-bold gradient-text mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-gray-400 text-sm">{stat.label}</div>
+                <dt className="font-mono text-xs font-bold uppercase leading-snug">{stat.label}</dt>
+                <dd className="font-display text-4xl leading-none mb-2">{stat.value}</dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
       </div>
     </section>
