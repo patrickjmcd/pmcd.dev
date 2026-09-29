@@ -1,14 +1,28 @@
-import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
-import { Lora } from 'next/font/google';
+import type { Metadata } from 'next';
+import { Archivo, Archivo_Black, IBM_Plex_Mono } from 'next/font/google';
 
 import '@/styles/global.css';
-import { AppConfig } from '@/utils/AppConfig';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { AppConfig } from '@/utils/AppConfig';
 
-const lora = Lora({
+const body = Archivo({
   subsets: ['latin'],
-  variable: '--font-serif',
+  variable: '--font-body',
+  display: 'swap',
+});
+
+const heading = Archivo_Black({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-heading',
+  display: 'swap',
+});
+
+const code = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-code',
   display: 'swap',
 });
 
@@ -35,26 +49,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={AppConfig.locale} className={`dark ${lora.variable}`} suppressHydrationWarning>
+    <html
+      lang={AppConfig.locale}
+      className={`${body.variable} ${heading.variable} ${code.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Prevent flash of wrong theme */}
         <script
           // biome-ignore lint/security/noDangerouslySetInnerHtml: required for anti-FOUC theme init
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('theme');var theme=t==='claude'||t==='dark'?t:(window.matchMedia('(prefers-color-scheme: light)').matches?'claude':'dark');document.documentElement.setAttribute('data-theme',theme);}catch(e){}`,
+            __html: `try{var t=localStorage.getItem('theme');var theme=t==='light'||t==='dark'?t:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',theme);}catch(e){}`,
           }}
         />
       </head>
       <body>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
       </body>
     </html>

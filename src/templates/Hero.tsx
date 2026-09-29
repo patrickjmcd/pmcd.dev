@@ -1,204 +1,92 @@
-'use client';
-
 import Link from 'next/link';
-import { useState } from 'react';
 
-import { ThemeToggle } from '@/components/ThemeToggle';
+import { SiteNav } from '@/components/SiteNav';
+import { SocialLinks } from '@/components/SocialLinks';
 import siteMetadata from '@/siteMetadata';
-import { Logo } from './Logo';
 
-const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '/resume', label: 'Resume' },
-  { href: '/blog', label: 'Blog' },
+const tickerItems = [
+  'Go',
+  'TypeScript',
+  'Python',
+  'Next.js',
+  'Kubernetes',
+  'MQTT',
+  'Home Assistant',
+  'ESP32',
+  'PostgreSQL',
+  'Terraform',
 ];
 
-const Hero = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+const Ticker = () => (
+  <div className="border-y-[3px] border-ink bg-coal text-[#f3ecdc] overflow-hidden" aria-hidden="true">
+    <div className="flex w-max animate-marquee py-3 font-mono font-bold uppercase tracking-wider">
+      {[0, 1].map((copy) => (
+        <ul key={copy} className="flex shrink-0">
+          {tickerItems.map((item) => (
+            <li key={item} className="flex items-center">
+              <span className="px-6">{item}</span>
+              <span className="text-lemon">✱</span>
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+);
 
-  const socialLinks = [
-    {
-      name: 'GitHub',
-      href: siteMetadata.github,
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-        </svg>
-      ),
-    },
-    {
-      name: 'LinkedIn',
-      href: siteMetadata.linkedin!,
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-        </svg>
-      ),
-    },
-    {
-      name: 'Email',
-      href: `mailto:${siteMetadata.email}`,
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-          />
-        </svg>
-      ),
-    },
-  ];
-
-  return (
-    <section className="relative min-h-screen flex flex-col">
-      {/* Navigation */}
-      <nav className="py-6 px-4 animate-fade-in relative z-50">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Logo xl />
-          <div className="flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-400 hover:text-white transition-colors hidden sm:block"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link href="#contact" className="btn-gradient text-sm px-5 py-2 hidden sm:inline-flex">
-              Contact
-            </Link>
-            <ThemeToggle />
-            {/* Hamburger — mobile only */}
-            <button
-              type="button"
-              className="sm:hidden p-2 text-gray-400 hover:text-white transition-colors"
-              aria-label="Toggle menu"
-              onClick={() => setMenuOpen((o) => !o)}
-            >
-              {menuOpen ? (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
-        </div>
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div
-            className="sm:hidden absolute top-full left-0 right-0 border-t border-white/10 px-6 py-4 flex flex-col gap-4"
-            style={{ backgroundColor: 'var(--color-dark-200)' }}
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-400 hover:text-white transition-colors text-lg py-1 px-4"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="#contact"
-              className="btn-gradient text-sm px-5 py-2 text-center mt-2 self-center mx-auto w-fit"
-              onClick={() => setMenuOpen(false)}
-            >
-              Contact
-            </Link>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Content */}
-      <div className="flex-1 flex items-center justify-center px-4 pb-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Floating shapes */}
-          <div className="absolute top-1/3 left-10 w-4 h-4 bg-primary-500 rounded-full animate-float opacity-60 hidden lg:block" />
-          <div className="absolute top-1/2 right-16 w-3 h-3 bg-secondary-500 rounded-full animate-float-delayed opacity-60 hidden lg:block" />
-          <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-accent-orange rounded-full animate-float opacity-60 hidden lg:block" />
-
-          <div className="animate-fade-in-up">
-            <p className="text-primary-400 font-medium mb-4 tracking-wide">
-              Software Developer, Musician & Emo Dad
-            </p>
-          </div>
-
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 animate-fade-in-up animate-delay-100">
-            Hi, I&apos;m <span className="gradient-text">Patrick McDonagh</span>
-          </h1>
-
-          <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animate-delay-200">
-            I build elegant solutions to complex problems. Specializing in full-stack development,
-            API design, and IoT systems in Kansas City, MO.
+const Hero = () => (
+  <>
+    <SiteNav />
+    <section className="px-4 pt-16 pb-20 md:pt-24 md:pb-28">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_auto] gap-12 items-end">
+        <div>
+          <p className="inline-block mb-6 px-3 py-1 font-mono text-sm font-bold uppercase bg-card border-2 border-ink -rotate-2">
+            Kansas City, MO
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-fade-in-up animate-delay-300">
-            <Link href="#projects" className="btn-gradient">
-              View My Work
-            </Link>
-            <Link
-              href="#contact"
-              className="px-8 py-4 font-semibold text-white border border-white/20 rounded-full hover:bg-white/10 transition-all duration-300"
-            >
-              Get In Touch
-            </Link>
-          </div>
+          <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl leading-[0.95] tracking-tight mb-8">
+            Patrick
+            <br />
+            McDonagh
+          </h1>
 
-          {/* Social Links */}
-          <div className="flex items-center justify-center gap-6 animate-fade-in-up animate-delay-400">
-            {socialLinks.map((social) => (
-              <Link
-                key={social.name}
-                href={social.href}
-                target={social.href.startsWith('mailto') ? undefined : '_blank'}
-                rel={social.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                className="text-gray-500 hover:text-white transition-colors duration-300 hover:scale-110 transform"
-                aria-label={social.name}
-              >
-                {social.icon}
-              </Link>
-            ))}
+          <p className="text-xl sm:text-2xl font-semibold mb-4 max-w-2xl">
+            Software developer, musician &amp;{' '}
+            <span className="inline-block px-2 bg-punch text-coal border-2 border-ink rotate-1">
+              emo dad
+            </span>
+          </p>
+
+          <p className="text-lg text-muted max-w-2xl leading-relaxed mb-10">
+            I write backend services, web apps, and the glue that gets data off of little sensors
+            and into somewhere useful. Lately that means Go, TypeScript, Kubernetes, and a lot of
+            MQTT.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Link href="#projects" className="nb-btn">
+              See what I&apos;ve built ↓
+            </Link>
+            <a href={`mailto:${siteMetadata.email}`} className="nb-btn nb-btn-plain">
+              {siteMetadata.email}
+            </a>
           </div>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
-        <Link href="#about" className="text-gray-500 hover:text-white transition-colors">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </Link>
+        <aside className="nb-card bg-lemon text-coal p-6 w-full lg:w-72 lg:rotate-2">
+          <p className="font-mono text-xs font-bold uppercase tracking-wider mb-2">Status</p>
+          <p className="font-display text-2xl leading-tight mb-4">Open to consulting work.</p>
+          <p className="text-sm mb-6">
+            APIs, cloud infra, IoT. If it has a sensor on it, I&apos;m interested.
+          </p>
+          <div className="on-accent">
+            <SocialLinks />
+          </div>
+        </aside>
       </div>
     </section>
-  );
-};
+    <Ticker />
+  </>
+);
 
 export { Hero };

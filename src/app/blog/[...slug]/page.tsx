@@ -86,13 +86,13 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PostLayout content={mainContent} next={next} prev={prev}>
-        <p className="not-prose inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-400 font-mono px-3 py-1.5 rounded-full text-xs mb-6">
-          Posted via{' '}
+        <p className="font-mono text-sm mb-8">
+          Originally posted on{' '}
           <a
             href={`${siteMetadata.leafletBase}/${slug}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-primary-300 transition-colors"
+            className="nb-link"
           >
             Leaflet
           </a>

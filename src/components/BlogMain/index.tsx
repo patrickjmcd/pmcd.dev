@@ -7,68 +7,64 @@ import { Leaflet } from '@/utils/RichText';
 
 export default function BlogMain({ posts }: { posts: Leaflet[] }) {
   return (
-    <div className="max-w-3xl mx-auto xl:max-w-5xl xl:px-0 px-4 py-16">
-      <div className="mb-12 animate-fade-in">
-        <h1 className="gradient-text text-5xl font-bold mb-4">Blog</h1>
-        <p className="text-lg text-gray-400">{siteMetadata.description}</p>
-      </div>
+    <div className="max-w-3xl mx-auto px-4 py-16">
+      <header className="mb-12">
+        <span className="nb-kicker mb-4">Writing</span>
+        <h1 className="font-display text-5xl sm:text-7xl leading-none tracking-tight mb-4">Blog</h1>
+        <p className="text-lg text-muted">
+          Mirrored from{' '}
+          <a
+            href={siteMetadata.leafletBase}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nb-link"
+          >
+            {siteMetadata.leafletBase.replace(/^https?:\/\//, '')}
+          </a>
+          .
+        </p>
+      </header>
 
-      <ul className="space-y-6">
-        {!posts.length && (
-          <p className="text-gray-500">No posts found.</p>
-        )}
+      {!posts.length && <p className="nb-card p-6 font-mono">No posts yet.</p>}
+
+      <ul className="space-y-8">
         {posts.map((post) => {
           const { value, date, summary, tags } = post;
           const rkey = post.uri.split('/').pop();
           return (
-            <li key={rkey} className="animate-fade-in-up">
-              <article className="glass-card p-6 hover:border-primary-500/30 transition-all duration-300 group">
-                <div className="flex flex-col gap-4">
-                  <div className="flex flex-wrap items-center gap-3 text-sm">
-                    <time dateTime={date} className="text-primary-400 font-medium">
-                      {date ? formatDate(date, siteMetadata.dateFormat ?? 'MMMM d, yyyy') : ''}
-                    </time>
-                    {tags.length > 0 && (
-                      <>
-                        <span className="text-gray-600">·</span>
-                        <div className="flex flex-wrap gap-2">
-                          {tags.map((tag) => (
-                            <Tag key={tag} text={tag} />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                  </div>
-
-                  <h2 className="text-xl font-bold leading-snug">
-                    <Link
-                      href={`/blog/${rkey}`}
-                      className="text-gray-100 group-hover:text-primary-400 transition-colors duration-300"
-                    >
-                      {value.title}
-                    </Link>
-                  </h2>
-
-                  {summary && (
-                    <p className="text-gray-400 leading-relaxed text-sm line-clamp-3">
-                      {summary}
-                    </p>
-                  )}
-
-                  <Link
-                    href={`/blog/${rkey}`}
-                    className="text-primary-500 hover:text-primary-400 text-sm font-medium flex items-center gap-1 transition-colors w-fit"
-                    aria-label={`Read more: "${value.title}"`}
+            <li key={rkey}>
+              <article className="nb-card nb-press relative p-6 flex flex-col gap-3">
+                <div className="flex flex-wrap items-center gap-2">
+                  <time
+                    dateTime={date}
+                    className="font-mono text-xs font-bold uppercase px-2 py-0.5 bg-ink text-paper"
                   >
-                    Read more <span aria-hidden="true">→</span>
-                  </Link>
+                    {date ? formatDate(date, siteMetadata.dateFormat ?? 'MMM d, yyyy') : ''}
+                  </time>
+                  {tags.map((tag) => (
+                    <span key={tag} className="relative z-10">
+                      <Tag text={tag} />
+                    </span>
+                  ))}
                 </div>
+
+                <h2 className="font-display text-2xl leading-tight">
+                  {/* The ::after stretches this link over the whole card */}
+                  <Link href={`/blog/${rkey}`} className="after:absolute after:inset-0">
+                    {value.title}
+                  </Link>
+                </h2>
+
+                {summary && <p className="text-muted leading-relaxed line-clamp-3">{summary}</p>}
+
+                <span className="font-mono text-sm font-bold" aria-hidden="true">
+                  Read →
+                </span>
               </article>
             </li>
           );
         })}
       </ul>
-
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { SectionHeading } from '@/components/SectionHeading';
 import siteMetadata from '@/siteMetadata';
 
 const Projects = () => {
@@ -10,7 +11,7 @@ const Projects = () => {
         'Bridge between Notion and Things3 that keeps tasks in sync across both platforms.',
       tags: ['Python', 'Notion', 'Automation'],
       link: 'https://github.com/patrickjmcd/notion-to-things3',
-      gradient: 'from-primary-500 to-accent-orange',
+      color: 'bg-lemon',
     },
     {
       title: 'Table Rock Lake Level',
@@ -19,7 +20,7 @@ const Projects = () => {
       tags: ['Next.js', 'TypeScript', 'Vercel'],
       link: 'https://github.com/patrickjmcd/table-rock-lake-level',
       homepage: 'https://table-rock-lake-level.vercel.app',
-      gradient: 'from-accent-cyan to-primary-500',
+      color: 'bg-pool',
     },
     {
       title: 'KC Utilities',
@@ -27,139 +28,105 @@ const Projects = () => {
         'Scrapes KCPL and KC Water usage data and pipes it into InfluxDB for dashboarding.',
       tags: ['Python', 'InfluxDB', 'IoT'],
       link: 'https://github.com/patrickjmcd/kc-utilities',
-      gradient: 'from-primary-500 to-secondary-500',
+      color: 'bg-mint',
     },
     {
       title: 'The Irish Aires',
-      description:
-        'Website for my dad\'s St. Louis-based Irish music band.',
+      description: "Website for my dad's St. Louis-based Irish music band.",
       tags: ['TypeScript', 'Next.js', 'Vercel'],
       link: 'https://github.com/patrickjmcd/the-irish-aires',
       homepage: 'https://the-irish-aires.vercel.app',
-      gradient: 'from-accent-emerald to-secondary-500',
+      color: 'bg-punch',
     },
     {
       title: 'SSD Farms',
-      description:
-        'Website for our storage facility in Shell Knob, MO.',
+      description: 'Website for our storage facility in Shell Knob, MO.',
       tags: ['TypeScript', 'Next.js', 'Vercel'],
       link: 'https://github.com/patrickjmcd/ssd-farms',
       homepage: 'https://ssd-farms.vercel.app',
-      gradient: 'from-accent-emerald to-accent-cyan',
+      color: 'bg-lilac',
     },
     {
       title: 'Epoch Convert',
-      description:
-        'Tiny CLI tool for converting epoch timestamps. Faster than googling it.',
+      description: 'Tiny CLI tool for converting epoch timestamps. Faster than googling it.',
       tags: ['Go', 'CLI'],
       link: 'https://github.com/patrickjmcd/epoch-convert',
-      gradient: 'from-accent-orange to-accent-cyan',
+      color: 'bg-tang',
     },
     {
       title: 'MLB Magic Numbers',
-      description:
-        'Crunches the numbers to show how close every MLB team is to clinching.',
+      description: 'Crunches the numbers to show how close every MLB team is to clinching.',
       tags: ['Python', 'Sports'],
       link: 'https://github.com/patrickjmcd/mlb-magic-numbers',
-      gradient: 'from-accent-cyan to-accent-emerald',
+      color: 'bg-pool',
     },
     {
       title: 'KC Water',
-      description:
-        'Python library for programmatically reading Kansas City water usage data.',
+      description: 'Python library for programmatically reading Kansas City water usage data.',
       tags: ['Python', 'API'],
       link: 'https://github.com/patrickjmcd/kcwater',
-      gradient: 'from-secondary-500 to-accent-orange',
+      color: 'bg-mint',
     },
   ];
 
   return (
-    <section id="projects" className="py-24 px-4">
+    <section id="projects" className="py-24 px-4 scroll-mt-16 border-t-[3px] border-ink">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A selection of projects I&apos;ve worked on
-          </p>
-        </div>
+        <SectionHeading kicker="03 / Projects" title="Stuff I've built">
+          Side projects, small tools, and a couple of sites for family.
+        </SectionHeading>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <Link
-              key={project.title}
-              href={project.homepage || project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-card group animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Gradient top border */}
-              <div
-                className={`h-1 bg-gradient-to-r ${project.gradient}`}
-              />
-
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-xl font-semibold text-white group-hover:text-primary-400 transition-colors">
-                    {project.title}
-                  </h3>
-                  <svg
-                    className="w-5 h-5 text-gray-500 group-hover:text-primary-400 transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+          {projects.map((project) => {
+            const href = project.homepage || project.link;
+            return (
+              <Link
+                key={project.title}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nb-card nb-press group flex flex-col"
+              >
+                <div
+                  className={`${project.color} text-coal flex items-center justify-between gap-4 px-5 py-3 border-b-[3px] border-ink`}
+                >
+                  <h3 className="font-display text-xl leading-tight">{project.title}</h3>
+                  <span
+                    className="font-display text-2xl leading-none transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                    aria-hidden="true"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
+                    ↗
+                  </span>
                 </div>
 
-                <p className="text-gray-400 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-xs font-medium rounded-full bg-dark-300/80 text-gray-300 border border-white/5"
-                    >
-                      {tag}
+                <div className="p-5 flex flex-col gap-4 flex-1">
+                  <p className="leading-relaxed">{project.description}</p>
+                  <div className="mt-auto flex flex-wrap items-center justify-between gap-3">
+                    <ul className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <li key={tag} className="nb-chip">
+                          {tag}
+                        </li>
+                      ))}
+                    </ul>
+                    <span className="font-mono text-xs text-muted truncate">
+                      {href.replace(/^https?:\/\//, '')}
                     </span>
-                  ))}
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
 
-        <div className="text-center mt-12 animate-fade-in-up">
+        <div className="mt-12">
           <Link
             href={siteMetadata.github!}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+            className="nb-btn nb-btn-plain"
           >
-            <span>View more on GitHub</span>
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
+            More on GitHub →
           </Link>
         </div>
       </div>

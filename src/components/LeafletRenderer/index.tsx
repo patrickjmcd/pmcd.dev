@@ -14,7 +14,7 @@ export function LeafletRenderer({ pages }: { pages: linearDocument.Main[] }) {
 
   const blocks = pages[0].blocks;
   return (
-    <div className="prose max-w-none dark:prose-invert">
+    <div className="prose max-w-none">
       {blocks.map((block, i) => (
         <LeafletBlock key={`block-${i}`} block={block} />
       ))}
@@ -139,26 +139,24 @@ function LeafletBlockUl({
 function LeafletBlockWebsite({ block }: { block: blocks.website.Main }) {
   return (
     <a
-      className="glass-card flex my-4 no-underline max-w-lg overflow-hidden hover:border-primary-500/30 transition-all duration-300 not-prose"
+      className="not-prose nb-card nb-press flex my-6 no-underline max-w-lg overflow-hidden"
       href={block.src}
       target="_blank"
       rel="noopener noreferrer"
     >
       {block.previewImage && (
-        <div className="border-r border-white/10 shrink-0">
+        <div className="border-r-[3px] border-ink shrink-0">
           <Image
-            className="mt-0 mb-0 w-[120px] h-full object-cover"
+            className="mt-0 mb-0 w-[120px] h-full object-cover border-0 shadow-none"
             src={`/static/images/leaflets/${block.previewImage.ref.toString()}.${toExt(block.previewImage.mimeType)}`}
             alt=""
           />
         </div>
       )}
       <div className="flex-1 flex flex-col gap-1.5 px-4 py-3">
-        {block.title && (
-          <div className="font-semibold text-sm text-gray-100 leading-snug">{block.title}</div>
-        )}
+        {block.title && <div className="font-display text-base leading-snug">{block.title}</div>}
         {block.description && (
-          <div className="text-gray-400 text-xs leading-snug">{block.description}</div>
+          <div className="text-muted text-sm leading-snug">{block.description}</div>
         )}
       </div>
     </a>
@@ -218,10 +216,10 @@ function RenderRichTextSegment({ segment }: { segment: RichTextSegment }) {
           return 'line-through';
         }
         if (facets.highlight.$matches(feature)) {
-          return 'bg-yellow-400';
+          return 'bg-lemon text-coal';
         }
         if (facets.link.$matches(feature)) {
-          return 'underline hover:text-primary-400';
+          return '';
         }
         console.warn('Warning! Unhandled facet in leaflet text block', feature);
         return '';

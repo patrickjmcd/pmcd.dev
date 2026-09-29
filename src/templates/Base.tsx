@@ -1,5 +1,3 @@
-import { AnimatedGradient } from '@/components/AnimatedGradient';
-
 import { About } from './About';
 import { Banner } from './Banner';
 import { Footer } from './Footer';
@@ -8,14 +6,16 @@ import { Projects } from './Projects';
 import { Skills } from './Skills';
 
 const Base = () => (
-  <AnimatedGradient>
+  <>
     <Hero />
-    <About />
-    <Skills />
-    <Projects />
-    <Banner />
+    <main>
+      <About />
+      <Skills />
+      <Projects />
+      <Banner />
+    </main>
     <Footer />
-  </AnimatedGradient>
+  </>
 );
 
 export { Base };
