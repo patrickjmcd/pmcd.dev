@@ -83,6 +83,11 @@ html[data-theme='dark'] {
     outline: 3px solid var(--ink);
     outline-offset: 3px;
   }
+
+  /* Blocks filled with --ink (e.g. the footer) need the opposite ring color */
+  .on-ink :focus-visible {
+    outline-color: var(--paper);
+  }
 }
 
 @layer components {
