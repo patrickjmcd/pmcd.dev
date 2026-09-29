@@ -28,7 +28,11 @@ const SiteNav = ({ action }: SiteNavProps) => {
   return (
     <header className="sticky top-0 z-50 bg-paper border-b-[3px] border-ink">
       <nav className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 font-display text-lg">
+        <Link
+          href="/"
+          aria-label="pmcd.dev home"
+          className="flex items-center gap-2 font-display text-lg"
+        >
           <span className="flex items-center justify-center w-10 h-10 bg-lemon border-2 border-ink text-coal">
             <Logo />
           </span>

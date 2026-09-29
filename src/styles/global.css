@@ -80,7 +80,7 @@ html[data-theme='dark'] {
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-tang);
+    outline: 3px solid var(--ink);
     outline-offset: 3px;
   }
 }
