@@ -77,10 +77,10 @@ const About = async () => {
               .
             </p>
             <p>
-              I&apos;m not looking for a new role right now, but I&apos;ll always make time to
-              consult on something interesting. If that sounds like your project,{' '}
+              I&apos;m not looking for a new job, but I have a hard time saying no to a good
+              problem. If you&apos;ve got one that keeps you up at night,{' '}
               <a href={`mailto:${siteMetadata.email}`} className="nb-link font-semibold">
-                send me an email
+                tell me about it
               </a>
               .
             </p>
