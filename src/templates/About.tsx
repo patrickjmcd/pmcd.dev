@@ -77,10 +77,10 @@ const About = async () => {
               .
             </p>
             <p>
-              I&apos;m taking on consulting work right now. If you&apos;ve got something that sounds
-              like a fit,{' '}
+              I&apos;m not looking for a new job, but I have a hard time saying no to a good
+              problem. If you&apos;ve got one that keeps you up at night,{' '}
               <a href={`mailto:${siteMetadata.email}`} className="nb-link font-semibold">
-                send me an email
+                tell me about it
               </a>
               .
             </p>

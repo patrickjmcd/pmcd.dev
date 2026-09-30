@@ -17,8 +17,17 @@ const tickerItems = [
   'Terraform',
 ];
 
+const availability = [
+  { label: 'Job offers', accepting: false },
+  { label: 'Recruiter DMs', accepting: false },
+  { label: 'Weird, interesting problems', accepting: true },
+];
+
 const Ticker = () => (
-  <div className="border-y-[3px] border-ink bg-coal text-[#f3ecdc] overflow-hidden" aria-hidden="true">
+  <div
+    className="border-y-[3px] border-ink bg-coal text-[#f3ecdc] overflow-hidden"
+    aria-hidden="true"
+  >
     <div className="flex w-max animate-marquee py-3 font-mono font-bold uppercase tracking-wider">
       {[0, 1].map((copy) => (
         <ul key={copy} className="flex shrink-0">
@@ -75,10 +84,23 @@ const Hero = () => (
 
         <aside className="nb-card bg-lemon text-coal p-6 w-full lg:w-72 lg:rotate-2">
           <p className="font-mono text-xs font-bold uppercase tracking-wider mb-2">Status</p>
-          <p className="font-display text-2xl leading-tight mb-4">Open to consulting work.</p>
-          <p className="text-sm mb-6">
-            APIs, cloud infra, IoT. If it has a sensor on it, I&apos;m interested.
-          </p>
+          <p className="font-display text-2xl leading-tight mb-4">Currently accepting:</p>
+          <ul className="mb-6 space-y-2">
+            {availability.map((item) => (
+              <li key={item.label} className="flex items-center gap-3">
+                <span
+                  className="flex items-center justify-center w-5 h-5 shrink-0 bg-white border-2 border-coal font-bold leading-none"
+                  aria-hidden="true"
+                >
+                  {item.accepting ? '✓' : ''}
+                </span>
+                <span className="sr-only">{item.accepting ? 'Yes:' : 'No:'}</span>
+                <span className={item.accepting ? 'font-bold' : 'line-through opacity-60'}>
+                  {item.label}
+                </span>
+              </li>
+            ))}
+          </ul>
           <div className="on-accent">
             <SocialLinks />
           </div>
