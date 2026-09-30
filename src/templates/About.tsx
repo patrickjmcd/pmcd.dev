@@ -77,8 +77,8 @@ const About = async () => {
               .
             </p>
             <p>
-              I&apos;m taking on consulting work right now. If you&apos;ve got something that sounds
-              like a fit,{' '}
+              I&apos;m not looking for a new role right now, but I&apos;ll always make time to
+              consult on something interesting. If that sounds like your project,{' '}
               <a href={`mailto:${siteMetadata.email}`} className="nb-link font-semibold">
                 send me an email
               </a>

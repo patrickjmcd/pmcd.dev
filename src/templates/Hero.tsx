@@ -18,7 +18,10 @@ const tickerItems = [
 ];
 
 const Ticker = () => (
-  <div className="border-y-[3px] border-ink bg-coal text-[#f3ecdc] overflow-hidden" aria-hidden="true">
+  <div
+    className="border-y-[3px] border-ink bg-coal text-[#f3ecdc] overflow-hidden"
+    aria-hidden="true"
+  >
     <div className="flex w-max animate-marquee py-3 font-mono font-bold uppercase tracking-wider">
       {[0, 1].map((copy) => (
         <ul key={copy} className="flex shrink-0">
@@ -75,9 +78,10 @@ const Hero = () => (
 
         <aside className="nb-card bg-lemon text-coal p-6 w-full lg:w-72 lg:rotate-2">
           <p className="font-mono text-xs font-bold uppercase tracking-wider mb-2">Status</p>
-          <p className="font-display text-2xl leading-tight mb-4">Open to consulting work.</p>
+          <p className="font-display text-2xl leading-tight mb-4">Not looking for work.</p>
           <p className="text-sm mb-6">
-            APIs, cloud infra, IoT. If it has a sensor on it, I&apos;m interested.
+            But I&apos;m always up for consulting on something interesting &mdash; especially if it
+            has a sensor on it.
           </p>
           <div className="on-accent">
             <SocialLinks />
