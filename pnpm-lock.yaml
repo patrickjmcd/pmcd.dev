@@ -15,8 +15,8 @@ importers:
         specifier: ^0.0.14
         version: 0.0.14
       '@atproto/lex-json':
-        specifier: ^0.0.14
-        version: 0.0.14
+        specifier: ^0.1.0
+        version: 0.1.6
       '@vercel/analytics':
         specifier: ^2.0.0
         version: 2.0.1(next@16.2.1(@babel/core@7.29.0(supports-color@10.2.2))(@opentelemetry/api@1.9.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(nuxt@4.3.1(@biomejs/biome@2.5.15)(@parcel/watcher@2.5.6)(@types/node@25.9.8)(@vue/compiler-sfc@3.5.30)(cac@6.7.14)(db0@0.3.4)(ioredis@5.10.0(supports-color@10.2.2))(lightningcss@1.30.2)(magicast@0.5.2)(rollup@4.59.0)(supports-color@10.2.2)(terser@5.46.0)(typescript@5.9.3)(vite@7.3.1(@types/node@25.9.8)(jiti@2.7.0)(lightningcss@1.30.2)(terser@5.46.0)(yaml@2.8.2))(yaml@2.8.2))(react@19.3.0)(vue-router@4.6.4(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))
@@ -224,6 +224,10 @@ packages:
   '@atproto/lex-data@0.0.14':
     resolution: {integrity: sha512-53DUa9664SS76nGAMYopWsO10OH0AAdf7P/HSKB6Wzx3iqe6lk/K61QZnKxOG1LreYl5CfvIJU6eNf4txI6GlQ==}
 
+  '@atproto/lex-data@0.1.7':
+    resolution: {integrity: sha512-kW/dPLqo/WgCLV+XESR4JKwV6c1rZWJGOfuPupZGTjEDAKoBbKXdaEzX9/1vKQYbZ9U3j0DS/n7OFFK7wBugyQ==}
+    engines: {node: '>=22'}
+
   '@atproto/lex-document@0.0.17':
     resolution: {integrity: sha512-rQiDCSYQwze4+kaArUtmp4bjZ9rV3vYUMhjdDwmZCKodpppNEYrP5AQzyKlxBtKO+MRdLYwHDDwwvakU8atRww==}
 
@@ -232,6 +236,10 @@ packages:
 
   '@atproto/lex-json@0.0.14':
     resolution: {integrity: sha512-6lPkDKqe7teEu4WrN5q7400cvZKgYS3uwUMvzG3F9XkgVYhOwSDCtouV/nSLBbpvo3l9OP0kiigtclcNcyekww==}
+
+  '@atproto/lex-json@0.1.6':
+    resolution: {integrity: sha512-mvrAd0lbyuecIHjyld8QN6MN6CBf4j0GCxLzegsvLh0SvDf+GbYWklkcQqmITL44yFQOwmA/QNIQj0Uvh7+R/g==}
+    engines: {node: '>=22'}
 
   '@atproto/lex-resolver@0.0.19':
     resolution: {integrity: sha512-oATn4RpZNLh5rp9doN5/UOYS/Cd25GOD90ohB5jnnmeoF8jTupqIYTVhntbnx1EFn+5tTlgkyXEBV+XESBUcdQ==}
@@ -4271,6 +4279,9 @@ packages:
   muggle-string@0.4.1:
     resolution: {integrity: sha512-VNTrAak/KhO2i8dqqnqnAHOa3cYBwXEZe9h+D5h/1ZqFSTEFHdM65lR7RoIqq3tBBYavsOXV84NoHXZ0AkPyqQ==}
 
+  multiformats@13.4.2:
+    resolution: {integrity: sha512-eh6eHCrRi1+POZ3dA+Dq1C6jhP1GNtr9CRINMb67OKzqW9I5DUuZM/3jLPlzhgpGeiNUlEGEbkCYChXMCc/8DQ==}
+
   multiformats@9.9.0:
     resolution: {integrity: sha512-HoMUjhH9T8DDBNT+6xzkrd9ga/XiBI4xLr58LJACwK6G3HTOPeMz4nB4KJs33L2BelrIJa7P0VuNaVF3hMYfjg==}
 
@@ -6066,6 +6077,12 @@ snapshots:
       uint8arrays: 3.0.0
       unicode-segmenter: 0.14.5
 
+  '@atproto/lex-data@0.1.7':
+    dependencies:
+      multiformats: 13.4.2
+      tslib: 2.8.1
+      unicode-segmenter: 0.14.5
+
   '@atproto/lex-document@0.0.17':
     dependencies:
       '@atproto/lex-schema': 0.0.16
@@ -6086,6 +6103,11 @@ snapshots:
   '@atproto/lex-json@0.0.14':
     dependencies:
       '@atproto/lex-data': 0.0.14
+      tslib: 2.8.1
+
+  '@atproto/lex-json@0.1.6':
+    dependencies:
+      '@atproto/lex-data': 0.1.7
       tslib: 2.8.1
 
   '@atproto/lex-resolver@0.0.19':
@@ -10725,6 +10747,8 @@ snapshots:
 
   muggle-string@0.4.1:
     optional: true
+
+  multiformats@13.4.2: {}
 
   multiformats@9.9.0: {}
 

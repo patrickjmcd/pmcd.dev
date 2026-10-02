@@ -14,7 +14,7 @@
   "dependencies": {
     "@atproto/identity": "^0.4.12",
     "@atproto/lex-data": "^0.0.14",
-    "@atproto/lex-json": "^0.0.14",
+    "@atproto/lex-json": "^0.1.0",
     "@vercel/analytics": "^2.0.0",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
