@@ -9,26 +9,36 @@ const fetchLeaflets = async (): Promise<Leaflet[]> => {
   const resolver = new IdResolver();
   const did = (await resolver.handle.resolve('pmcd.dev')) as DidString;
   const pds = (await resolver.did.resolveAtprotoData(did!)).pds;
-  const client = new Client(pds);
+  // lex 0.3 defaults to strict processing, which rejects legacy blob refs
+  // (e.g. older images). Accept them, as lex 0.0.x did.
+  const client = new Client(pds, { strictResponseProcessing: false });
 
   const invalids: LexMap[] = [];
 
-  // Helper to paginate any collection via typed client
-  async function listAll<T extends LexMap>(collection: Parameters<typeof client.list>[0]) {
+  // Paginate a collection and validate each record against its schema.
+  // client.list() validates strictly with no way to opt out, which drops any
+  // record containing a legacy blob ref, so validate here with strict: false.
+  async function listAll<T extends LexMap>(
+    ns: typeof pub.leaflet.document | typeof siteStandard.document,
+  ) {
     const records: ListRecord<T>[] = [];
     let cursor: string | undefined;
     let i = 0;
     do {
-      const result = await client.list(collection, {
+      const { body } = await client.listRecords(ns.$nsid, {
         repo: did!,
         limit: 50,
         reverse: true,
         cursor,
       });
-      cursor = result.cursor;
-      for (const record of result.records) {
-        if (record.valid) records.push(record as unknown as ListRecord<T>);
-        else invalids.push(record.value);
+      cursor = body.cursor;
+      for (const record of body.records) {
+        const result = ns.main.safeValidate(record.value, { strict: false });
+        if (result.success) {
+          records.push({ ...record, valid: true, value: result.value } as unknown as ListRecord<T>);
+        } else {
+          invalids.push(record.value);
+        }
       }
     } while (cursor && ++i < 100);
     return records;
