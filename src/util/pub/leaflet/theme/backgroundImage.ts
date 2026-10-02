@@ -4,3 +4,4 @@
 
 export * from './backgroundImage.defs'
 export * as $defs from './backgroundImage.defs'
+export { main as default } from './backgroundImage.defs'

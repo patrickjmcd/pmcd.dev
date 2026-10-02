@@ -4,3 +4,4 @@
 
 export * from './bskyPost.defs'
 export * as $defs from './bskyPost.defs'
+export { main as default } from './bskyPost.defs'

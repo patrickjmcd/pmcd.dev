@@ -4,3 +4,4 @@
 
 export * from './strongRef.defs'
 export * as $defs from './strongRef.defs'
+export { main as default } from './strongRef.defs'

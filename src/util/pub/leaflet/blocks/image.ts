@@ -4,3 +4,4 @@
 
 export * from './image.defs'
 export * as $defs from './image.defs'
+export { main as default } from './image.defs'

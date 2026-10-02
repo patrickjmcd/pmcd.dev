@@ -4,3 +4,4 @@
 
 export * from './canvas.defs'
 export * as $defs from './canvas.defs'
+export { main as default } from './canvas.defs'

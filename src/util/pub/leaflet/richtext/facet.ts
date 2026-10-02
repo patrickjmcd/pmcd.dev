@@ -4,3 +4,4 @@
 
 export * from './facet.defs'
 export * as $defs from './facet.defs'
+export { main as default } from './facet.defs'

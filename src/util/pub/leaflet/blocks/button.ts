@@ -4,3 +4,4 @@
 
 export * from './button.defs'
 export * as $defs from './button.defs'
+export { main as default } from './button.defs'

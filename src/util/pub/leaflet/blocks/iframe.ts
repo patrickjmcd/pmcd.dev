@@ -4,3 +4,4 @@
 
 export * from './iframe.defs'
 export * as $defs from './iframe.defs'
+export { main as default } from './iframe.defs'

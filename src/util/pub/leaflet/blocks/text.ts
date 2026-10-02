@@ -4,3 +4,4 @@
 
 export * from './text.defs'
 export * as $defs from './text.defs'
+export { main as default } from './text.defs'

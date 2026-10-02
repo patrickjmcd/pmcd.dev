@@ -4,3 +4,4 @@
 
 export * from './header.defs'
 export * as $defs from './header.defs'
+export { main as default } from './header.defs'

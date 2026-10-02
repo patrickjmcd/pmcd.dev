@@ -1,10 +1,15 @@
-import type { ListRecord } from '@atproto/lex';
+import type { LexMap, ListRecordItem } from '@atproto/lex';
 import siteMetadata from '@/siteMetadata';
 import * as pub from '@/util/pub';
 import * as siteStandard from '@/util/site/standard';
 import { facet } from '@/util/pub/leaflet/richtext';
 
-type AnyLeafletRecord = ListRecord<pub.leaflet.document.Main> | ListRecord<siteStandard.document.Main>;
+/** A record from `client.list()` that passed schema validation. */
+export type ListRecord<T extends LexMap> = Extract<ListRecordItem<T>, { valid: true }>;
+
+type AnyLeafletRecord =
+  | ListRecord<pub.leaflet.document.Main>
+  | ListRecord<siteStandard.document.Main>;
 
 export type Leaflet = AnyLeafletRecord & {
   summary?: string;
@@ -41,7 +46,14 @@ export function asLeaflet(leaflet: AnyLeafletRecord): Leaflet {
     date: v.publishedAt,
     tags: v.tags ?? [],
     rkey,
-    publication: String('author' in v ? (v as pub.leaflet.document.Main).author : (v as siteStandard.document.Main).site).split(':').pop() ?? '',
+    publication:
+      String(
+        'author' in v
+          ? (v as pub.leaflet.document.Main).author
+          : (v as siteStandard.document.Main).site,
+      )
+        .split(':')
+        .pop() ?? '',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',

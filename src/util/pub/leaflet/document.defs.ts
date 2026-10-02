@@ -10,6 +10,8 @@ import * as RepoStrongRef from '../../com/atproto/repo/strongRef.defs'
 
 const $nsid = 'pub.leaflet.document'
 
+type $nsid = typeof $nsid
+
 export { $nsid }
 
 /** Record containing a document */
@@ -35,59 +37,77 @@ type Main = {
 export type { Main }
 
 /** Record containing a document */
-const main = l.record<'tid', Main>(
+const main = /*#__PURE__*/ l.record<'tid', Main>(
   'tid',
   $nsid,
-  l.object({
-    tags: l.optional(l.array(l.string({ maxLength: 50 }))),
-    pages: l.array(
-      l.typedUnion(
+  /*#__PURE__*/ l.object({
+    tags: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.array(/*#__PURE__*/ l.string({ maxLength: 50 })),
+    ),
+    pages: /*#__PURE__*/ l.array(
+      /*#__PURE__*/ l.typedUnion(
         [
-          l.typedRef<PagesLinearDocument.Main>(
+          /*#__PURE__*/ l.typedRef<PagesLinearDocument.Main>(
             (() => PagesLinearDocument.main) as any,
           ),
-          l.typedRef<PagesCanvas.Main>((() => PagesCanvas.main) as any),
+          /*#__PURE__*/ l.typedRef<PagesCanvas.Main>(
+            (() => PagesCanvas.main) as any,
+          ),
         ],
         false,
       ),
     ),
-    theme: l.optional(
-      l.ref<LeafletPublication.Theme>((() => LeafletPublication.theme) as any),
+    theme: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.ref<LeafletPublication.Theme>(
+        (() => LeafletPublication.theme) as any,
+      ),
     ),
-    title: l.string({ maxLength: 5000, maxGraphemes: 500 }),
-    author: l.string({ format: 'at-identifier' }),
-    postRef: l.optional(
-      l.ref<RepoStrongRef.Main>((() => RepoStrongRef.main) as any),
+    title: /*#__PURE__*/ l.string({ maxLength: 5000, maxGraphemes: 500 }),
+    author: /*#__PURE__*/ l.string({ format: 'at-identifier' }),
+    postRef: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.ref<RepoStrongRef.Main>(
+        (() => RepoStrongRef.main) as any,
+      ),
     ),
-    coverImage: l.optional(
-      l.blob({
+    coverImage: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.blob({
         accept: ['image/png', 'image/jpeg', 'image/webp'],
         maxSize: 1000000,
-        allowLegacy: false,
       }),
     ),
-    description: l.optional(l.string({ maxLength: 30000, maxGraphemes: 3000 })),
-    preferences: l.optional(
-      l.ref<LeafletPublication.Preferences>(
+    description: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.string({ maxLength: 30000, maxGraphemes: 3000 }),
+    ),
+    preferences: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.ref<LeafletPublication.Preferences>(
         (() => LeafletPublication.preferences) as any,
       ),
     ),
-    publication: l.optional(l.string({ format: 'at-uri' })),
-    publishedAt: l.optional(l.string({ format: 'datetime' })),
+    publication: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.string({ format: 'at-uri' }),
+    ),
+    publishedAt: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.string({ format: 'datetime' }),
+    ),
   }),
 )
 
 export { main }
 
-export const $isTypeOf = /*#__PURE__*/ main.isTypeOf.bind(main),
-  $build = /*#__PURE__*/ main.build.bind(main),
-  $type = /*#__PURE__*/ main.$type
-export const $assert = /*#__PURE__*/ main.assert.bind(main),
-  $check = /*#__PURE__*/ main.check.bind(main),
-  $cast = /*#__PURE__*/ main.cast.bind(main),
-  $ifMatches = /*#__PURE__*/ main.ifMatches.bind(main),
-  $matches = /*#__PURE__*/ main.matches.bind(main),
-  $parse = /*#__PURE__*/ main.parse.bind(main),
-  $safeParse = /*#__PURE__*/ main.safeParse.bind(main),
-  $validate = /*#__PURE__*/ main.validate.bind(main),
-  $safeValidate = /*#__PURE__*/ main.safeValidate.bind(main)
+const $type = $nsid
+
+type $type = typeof $type
+
+export { $type }
+
+export const $isTypeOf = /*#__PURE__*/ main.isTypeOf.bind(main)
+export const $build = /*#__PURE__*/ main.build.bind(main)
+export const $assert = /*#__PURE__*/ main.assert.bind(main)
+export const $check = /*#__PURE__*/ main.check.bind(main)
+export const $cast = /*#__PURE__*/ main.cast.bind(main)
+export const $ifMatches = /*#__PURE__*/ main.ifMatches.bind(main)
+export const $matches = /*#__PURE__*/ main.matches.bind(main)
+export const $parse = /*#__PURE__*/ main.parse.bind(main)
+export const $safeParse = /*#__PURE__*/ main.safeParse.bind(main)
+export const $validate = /*#__PURE__*/ main.validate.bind(main)
+export const $safeValidate = /*#__PURE__*/ main.safeValidate.bind(main)

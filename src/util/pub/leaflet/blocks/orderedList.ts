@@ -4,3 +4,4 @@
 
 export * from './orderedList.defs'
 export * as $defs from './orderedList.defs'
+export { main as default } from './orderedList.defs'

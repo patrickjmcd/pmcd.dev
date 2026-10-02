@@ -4,3 +4,4 @@
 
 export * from './linearDocument.defs'
 export * as $defs from './linearDocument.defs'
+export { main as default } from './linearDocument.defs'

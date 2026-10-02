@@ -4,3 +4,4 @@
 
 export * from './poll.defs'
 export * as $defs from './poll.defs'
+export { main as default } from './poll.defs'

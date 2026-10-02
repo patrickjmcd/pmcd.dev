@@ -8,6 +8,8 @@ import * as ThemeBackgroundImage from './theme/backgroundImage.defs'
 
 const $nsid = 'pub.leaflet.publication'
 
+type $nsid = typeof $nsid
+
 export { $nsid }
 
 /** Record declaring a publication */
@@ -24,125 +26,154 @@ type Main = {
 export type { Main }
 
 /** Record declaring a publication */
-const main = l.record<'tid', Main>(
+const main = /*#__PURE__*/ l.record<'tid', Main>(
   'tid',
   $nsid,
-  l.object({
-    icon: l.optional(
-      l.blob({ accept: ['image/*'], maxSize: 1000000, allowLegacy: false }),
+  /*#__PURE__*/ l.object({
+    icon: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.blob({ accept: ['image/*'], maxSize: 1000000 }),
     ),
-    name: l.string({ maxLength: 2000 }),
-    theme: l.optional(l.ref<Theme>((() => theme) as any)),
-    base_path: l.optional(l.string()),
-    description: l.optional(l.string({ maxLength: 2000 })),
-    preferences: l.optional(l.ref<Preferences>((() => preferences) as any)),
+    name: /*#__PURE__*/ l.string({ maxLength: 2000 }),
+    theme: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.ref<Theme>((() => theme) as any),
+    ),
+    base_path: /*#__PURE__*/ l.optional(/*#__PURE__*/ l.string()),
+    description: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.string({ maxLength: 2000 }),
+    ),
+    preferences: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.ref<Preferences>((() => preferences) as any),
+    ),
   }),
 )
 
 export { main }
 
-export const $isTypeOf = /*#__PURE__*/ main.isTypeOf.bind(main),
-  $build = /*#__PURE__*/ main.build.bind(main),
-  $type = /*#__PURE__*/ main.$type
-export const $assert = /*#__PURE__*/ main.assert.bind(main),
-  $check = /*#__PURE__*/ main.check.bind(main),
-  $cast = /*#__PURE__*/ main.cast.bind(main),
-  $ifMatches = /*#__PURE__*/ main.ifMatches.bind(main),
-  $matches = /*#__PURE__*/ main.matches.bind(main),
-  $parse = /*#__PURE__*/ main.parse.bind(main),
-  $safeParse = /*#__PURE__*/ main.safeParse.bind(main),
-  $validate = /*#__PURE__*/ main.validate.bind(main),
-  $safeValidate = /*#__PURE__*/ main.safeValidate.bind(main)
+const $type = $nsid
+
+type $type = typeof $type
+
+export { $type }
+
+export const $isTypeOf = /*#__PURE__*/ main.isTypeOf.bind(main)
+export const $build = /*#__PURE__*/ main.build.bind(main)
+export const $assert = /*#__PURE__*/ main.assert.bind(main)
+export const $check = /*#__PURE__*/ main.check.bind(main)
+export const $cast = /*#__PURE__*/ main.cast.bind(main)
+export const $ifMatches = /*#__PURE__*/ main.ifMatches.bind(main)
+export const $matches = /*#__PURE__*/ main.matches.bind(main)
+export const $parse = /*#__PURE__*/ main.parse.bind(main)
+export const $safeParse = /*#__PURE__*/ main.safeParse.bind(main)
+export const $validate = /*#__PURE__*/ main.validate.bind(main)
+export const $safeValidate = /*#__PURE__*/ main.safeValidate.bind(main)
 
 type Theme = {
   $type?: 'pub.leaflet.publication#theme'
   primary?:
-    | l.$Typed<ThemeColor.Rgba>
-    | l.$Typed<ThemeColor.Rgb>
-    | l.Unknown$TypedObject
+    l.$Typed<ThemeColor.Rgba> | l.$Typed<ThemeColor.Rgb> | l.Unknown$TypedObject
   bodyFont?: string
   pageWidth?: number
   accentText?:
-    | l.$Typed<ThemeColor.Rgba>
-    | l.$Typed<ThemeColor.Rgb>
-    | l.Unknown$TypedObject
+    l.$Typed<ThemeColor.Rgba> | l.$Typed<ThemeColor.Rgb> | l.Unknown$TypedObject
   headingFont?: string
   pageBackground?:
-    | l.$Typed<ThemeColor.Rgba>
-    | l.$Typed<ThemeColor.Rgb>
-    | l.Unknown$TypedObject
+    l.$Typed<ThemeColor.Rgba> | l.$Typed<ThemeColor.Rgb> | l.Unknown$TypedObject
   backgroundColor?:
-    | l.$Typed<ThemeColor.Rgba>
-    | l.$Typed<ThemeColor.Rgb>
-    | l.Unknown$TypedObject
+    l.$Typed<ThemeColor.Rgba> | l.$Typed<ThemeColor.Rgb> | l.Unknown$TypedObject
   backgroundImage?: ThemeBackgroundImage.Main
   accentBackground?:
-    | l.$Typed<ThemeColor.Rgba>
-    | l.$Typed<ThemeColor.Rgb>
-    | l.Unknown$TypedObject
+    l.$Typed<ThemeColor.Rgba> | l.$Typed<ThemeColor.Rgb> | l.Unknown$TypedObject
   showPageBackground?: boolean
 }
 
 export type { Theme }
 
-const theme = l.typedObject<Theme>(
+const theme = /*#__PURE__*/ l.typedObject<Theme>(
   $nsid,
   'theme',
-  l.object({
-    primary: l.optional(
-      l.typedUnion(
+  /*#__PURE__*/ l.object({
+    primary: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.typedUnion(
         [
-          l.typedRef<ThemeColor.Rgba>((() => ThemeColor.rgba) as any),
-          l.typedRef<ThemeColor.Rgb>((() => ThemeColor.rgb) as any),
+          /*#__PURE__*/ l.typedRef<ThemeColor.Rgba>(
+            (() => ThemeColor.rgba) as any,
+          ),
+          /*#__PURE__*/ l.typedRef<ThemeColor.Rgb>(
+            (() => ThemeColor.rgb) as any,
+          ),
         ],
         false,
       ),
     ),
-    bodyFont: l.optional(l.string({ maxLength: 100 })),
-    pageWidth: l.optional(l.integer({ maximum: 1600, minimum: 0 })),
-    accentText: l.optional(
-      l.typedUnion(
+    bodyFont: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.string({ maxLength: 100 }),
+    ),
+    pageWidth: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.integer({ maximum: 1600, minimum: 0 }),
+    ),
+    accentText: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.typedUnion(
         [
-          l.typedRef<ThemeColor.Rgba>((() => ThemeColor.rgba) as any),
-          l.typedRef<ThemeColor.Rgb>((() => ThemeColor.rgb) as any),
+          /*#__PURE__*/ l.typedRef<ThemeColor.Rgba>(
+            (() => ThemeColor.rgba) as any,
+          ),
+          /*#__PURE__*/ l.typedRef<ThemeColor.Rgb>(
+            (() => ThemeColor.rgb) as any,
+          ),
         ],
         false,
       ),
     ),
-    headingFont: l.optional(l.string({ maxLength: 100 })),
-    pageBackground: l.optional(
-      l.typedUnion(
+    headingFont: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.string({ maxLength: 100 }),
+    ),
+    pageBackground: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.typedUnion(
         [
-          l.typedRef<ThemeColor.Rgba>((() => ThemeColor.rgba) as any),
-          l.typedRef<ThemeColor.Rgb>((() => ThemeColor.rgb) as any),
+          /*#__PURE__*/ l.typedRef<ThemeColor.Rgba>(
+            (() => ThemeColor.rgba) as any,
+          ),
+          /*#__PURE__*/ l.typedRef<ThemeColor.Rgb>(
+            (() => ThemeColor.rgb) as any,
+          ),
         ],
         false,
       ),
     ),
-    backgroundColor: l.optional(
-      l.typedUnion(
+    backgroundColor: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.typedUnion(
         [
-          l.typedRef<ThemeColor.Rgba>((() => ThemeColor.rgba) as any),
-          l.typedRef<ThemeColor.Rgb>((() => ThemeColor.rgb) as any),
+          /*#__PURE__*/ l.typedRef<ThemeColor.Rgba>(
+            (() => ThemeColor.rgba) as any,
+          ),
+          /*#__PURE__*/ l.typedRef<ThemeColor.Rgb>(
+            (() => ThemeColor.rgb) as any,
+          ),
         ],
         false,
       ),
     ),
-    backgroundImage: l.optional(
-      l.ref<ThemeBackgroundImage.Main>(
+    backgroundImage: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.ref<ThemeBackgroundImage.Main>(
         (() => ThemeBackgroundImage.main) as any,
       ),
     ),
-    accentBackground: l.optional(
-      l.typedUnion(
+    accentBackground: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.typedUnion(
         [
-          l.typedRef<ThemeColor.Rgba>((() => ThemeColor.rgba) as any),
-          l.typedRef<ThemeColor.Rgb>((() => ThemeColor.rgb) as any),
+          /*#__PURE__*/ l.typedRef<ThemeColor.Rgba>(
+            (() => ThemeColor.rgba) as any,
+          ),
+          /*#__PURE__*/ l.typedRef<ThemeColor.Rgb>(
+            (() => ThemeColor.rgb) as any,
+          ),
         ],
         false,
       ),
     ),
-    showPageBackground: l.optional(l.withDefault(l.boolean(), false)),
+    showPageBackground: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.withDefault(/*#__PURE__*/ l.boolean(), false),
+    ),
   }),
 )
 
@@ -159,15 +190,25 @@ type Preferences = {
 
 export type { Preferences }
 
-const preferences = l.typedObject<Preferences>(
+const preferences = /*#__PURE__*/ l.typedObject<Preferences>(
   $nsid,
   'preferences',
-  l.object({
-    showComments: l.optional(l.withDefault(l.boolean(), true)),
-    showMentions: l.optional(l.withDefault(l.boolean(), true)),
-    showPrevNext: l.optional(l.withDefault(l.boolean(), true)),
-    showInDiscover: l.optional(l.withDefault(l.boolean(), true)),
-    showRecommends: l.optional(l.withDefault(l.boolean(), true)),
+  /*#__PURE__*/ l.object({
+    showComments: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.withDefault(/*#__PURE__*/ l.boolean(), true),
+    ),
+    showMentions: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.withDefault(/*#__PURE__*/ l.boolean(), true),
+    ),
+    showPrevNext: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.withDefault(/*#__PURE__*/ l.boolean(), true),
+    ),
+    showInDiscover: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.withDefault(/*#__PURE__*/ l.boolean(), true),
+    ),
+    showRecommends: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.withDefault(/*#__PURE__*/ l.boolean(), true),
+    ),
   }),
 )
 

@@ -4,3 +4,4 @@
 
 export * from './blockquote.defs'
 export * as $defs from './blockquote.defs'
+export { main as default } from './blockquote.defs'

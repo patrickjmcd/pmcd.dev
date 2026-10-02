@@ -4,3 +4,4 @@
 
 export * from './website.defs'
 export * as $defs from './website.defs'
+export { main as default } from './website.defs'

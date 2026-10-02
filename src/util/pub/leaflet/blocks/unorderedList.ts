@@ -4,3 +4,4 @@
 
 export * from './unorderedList.defs'
 export * as $defs from './unorderedList.defs'
+export { main as default } from './unorderedList.defs'
