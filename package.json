@@ -12,7 +12,7 @@
     "check": "biome check ./src"
   },
   "dependencies": {
-    "@atproto/identity": "^0.4.12",
+    "@atproto/identity": "^0.5.0",
     "@atproto/lex-data": "^0.0.14",
     "@atproto/lex-json": "^0.1.0",
     "@vercel/analytics": "^2.0.0",
