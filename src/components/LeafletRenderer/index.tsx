@@ -1,4 +1,5 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: TODO: fix indices? */
+import { getBlobCidString, getBlobMime } from '@atproto/lex';
 import { JsonValue, jsonToLex } from '@atproto/lex-json';
 import { BlueskyPostEmbed } from '@/components/BlueskyPostEmbed';
 import Image from '@/components/Image';
@@ -148,7 +149,7 @@ function LeafletBlockWebsite({ block }: { block: blocks.website.Main }) {
         <div className="border-r-[3px] border-ink shrink-0">
           <Image
             className="mt-0 mb-0 w-[120px] h-full object-cover border-0 shadow-none"
-            src={`/static/images/leaflets/${block.previewImage.ref.toString()}.${toExt(block.previewImage.mimeType)}`}
+            src={`/static/images/leaflets/${getBlobCidString(block.previewImage)}.${toExt(getBlobMime(block.previewImage))}`}
             alt=""
           />
         </div>
@@ -166,7 +167,7 @@ function LeafletBlockWebsite({ block }: { block: blocks.website.Main }) {
 function LeafletBlockImage({ block }: { block: blocks.image.Main }) {
   return (
     <Image
-      src={`/static/images/leaflets/${block.image.ref.toString()}.${toExt(block.image.mimeType)}`}
+      src={`/static/images/leaflets/${getBlobCidString(block.image)}.${toExt(getBlobMime(block.image))}`}
       alt=""
     />
   );

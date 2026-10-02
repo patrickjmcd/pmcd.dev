@@ -4,3 +4,4 @@
 
 export * from './page.defs'
 export * as $defs from './page.defs'
+export { main as default } from './page.defs'

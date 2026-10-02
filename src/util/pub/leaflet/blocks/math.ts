@@ -4,3 +4,4 @@
 
 export * from './math.defs'
 export * as $defs from './math.defs'
+export { main as default } from './math.defs'

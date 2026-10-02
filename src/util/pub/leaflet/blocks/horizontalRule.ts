@@ -4,3 +4,4 @@
 
 export * from './horizontalRule.defs'
 export * as $defs from './horizontalRule.defs'
+export { main as default } from './horizontalRule.defs'

@@ -6,6 +6,8 @@ import { l } from '@atproto/lex'
 
 const $nsid = 'pub.leaflet.blocks.iframe'
 
+type $nsid = typeof $nsid
+
 export { $nsid }
 
 type Main = {
@@ -16,26 +18,33 @@ type Main = {
 
 export type { Main }
 
-const main = l.typedObject<Main>(
+const main = /*#__PURE__*/ l.typedObject<Main>(
   $nsid,
   'main',
-  l.object({
-    url: l.string({ format: 'uri' }),
-    height: l.optional(l.integer({ maximum: 1600, minimum: 16 })),
+  /*#__PURE__*/ l.object({
+    url: /*#__PURE__*/ l.string({ format: 'uri' }),
+    height: /*#__PURE__*/ l.optional(
+      /*#__PURE__*/ l.integer({ maximum: 1600, minimum: 16 }),
+    ),
   }),
 )
 
 export { main }
 
-export const $isTypeOf = /*#__PURE__*/ main.isTypeOf.bind(main),
-  $build = /*#__PURE__*/ main.build.bind(main),
-  $type = /*#__PURE__*/ main.$type
-export const $assert = /*#__PURE__*/ main.assert.bind(main),
-  $check = /*#__PURE__*/ main.check.bind(main),
-  $cast = /*#__PURE__*/ main.cast.bind(main),
-  $ifMatches = /*#__PURE__*/ main.ifMatches.bind(main),
-  $matches = /*#__PURE__*/ main.matches.bind(main),
-  $parse = /*#__PURE__*/ main.parse.bind(main),
-  $safeParse = /*#__PURE__*/ main.safeParse.bind(main),
-  $validate = /*#__PURE__*/ main.validate.bind(main),
-  $safeValidate = /*#__PURE__*/ main.safeValidate.bind(main)
+const $type = $nsid
+
+type $type = typeof $type
+
+export { $type }
+
+export const $isTypeOf = /*#__PURE__*/ main.isTypeOf.bind(main)
+export const $build = /*#__PURE__*/ main.build.bind(main)
+export const $assert = /*#__PURE__*/ main.assert.bind(main)
+export const $check = /*#__PURE__*/ main.check.bind(main)
+export const $cast = /*#__PURE__*/ main.cast.bind(main)
+export const $ifMatches = /*#__PURE__*/ main.ifMatches.bind(main)
+export const $matches = /*#__PURE__*/ main.matches.bind(main)
+export const $parse = /*#__PURE__*/ main.parse.bind(main)
+export const $safeParse = /*#__PURE__*/ main.safeParse.bind(main)
+export const $validate = /*#__PURE__*/ main.validate.bind(main)
+export const $safeValidate = /*#__PURE__*/ main.safeValidate.bind(main)

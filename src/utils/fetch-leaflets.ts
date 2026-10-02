@@ -1,9 +1,9 @@
 import { IdResolver } from '@atproto/identity';
-import type { DidString, LexMap, ListRecord } from '@atproto/lex';
+import type { DidString, LexMap } from '@atproto/lex';
 import { Client } from '@atproto/lex';
 import * as pub from '@/util/pub';
 import * as siteStandard from '@/util/site/standard';
-import { asLeaflet, Leaflet } from '@/utils/RichText';
+import { asLeaflet, Leaflet, type ListRecord } from '@/utils/RichText';
 
 const fetchLeaflets = async (): Promise<Leaflet[]> => {
   const resolver = new IdResolver();
@@ -19,10 +19,17 @@ const fetchLeaflets = async (): Promise<Leaflet[]> => {
     let cursor: string | undefined;
     let i = 0;
     do {
-      const result = await client.list(collection, { repo: did!, limit: 50, reverse: true, cursor });
+      const result = await client.list(collection, {
+        repo: did!,
+        limit: 50,
+        reverse: true,
+        cursor,
+      });
       cursor = result.cursor;
-      records.push(...(result.records as ListRecord<T>[]));
-      invalids.push(...result.invalid);
+      for (const record of result.records) {
+        if (record.valid) records.push(record as unknown as ListRecord<T>);
+        else invalids.push(record.value);
+      }
     } while (cursor && ++i < 100);
     return records;
   }
@@ -34,7 +41,8 @@ const fetchLeaflets = async (): Promise<Leaflet[]> => {
 
   // Merge, preferring site.standard.document and deduplicating by rkey
   const seenRkeys = new Set<string>();
-  const merged: (ListRecord<pub.leaflet.document.Main> | ListRecord<siteStandard.document.Main>)[] = [];
+  const merged: (ListRecord<pub.leaflet.document.Main> | ListRecord<siteStandard.document.Main>)[] =
+    [];
   for (const record of [...standardDocs, ...legacyDocs]) {
     const rkey = record.uri.split('/').pop()!;
     if (!seenRkeys.has(rkey)) {
@@ -47,7 +55,10 @@ const fetchLeaflets = async (): Promise<Leaflet[]> => {
 
   return merged
     .map(asLeaflet)
-    .sort((a, b) => (a.date ? new Date(a.date).getTime() : 0) - (b.date ? new Date(b.date).getTime() : 0))
+    .sort(
+      (a, b) =>
+        (a.date ? new Date(a.date).getTime() : 0) - (b.date ? new Date(b.date).getTime() : 0),
+    )
     .reverse();
 };
 
