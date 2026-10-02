@@ -12,8 +12,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.15
       '@atproto/lex-data':
-        specifier: ^0.0.14
-        version: 0.0.14
+        specifier: ^0.1.0
+        version: 0.1.7
       '@atproto/lex-json':
         specifier: ^0.1.0
         version: 0.1.6
