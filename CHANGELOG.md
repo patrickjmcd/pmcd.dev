@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/patrickjmcd/pmcd.dev/compare/v1.3.0...v1.3.1) (2026-10-03)
+
+
+### Bug Fixes
+
+* **build:** pin pnpm 10 and build once per release ([a6d3fb9](https://github.com/patrickjmcd/pmcd.dev/commit/a6d3fb9313b32c6eeee4ce36e656704d58b92f29))
+
 ## [1.3.0](https://github.com/patrickjmcd/pmcd.dev/compare/v1.2.1...v1.3.0) (2026-10-02)
 
 
