@@ -1,2 +1,15 @@
+# Dependency build scripts. pnpm 10 reads onlyBuiltDependencies; pnpm 12
+# requires every package with a build script to be explicitly allowed or
+# denied in allowBuilds, and fails the install otherwise.
 onlyBuiltDependencies:
   - contentlayer2
+
+allowBuilds:
+  '@parcel/watcher': true
+  contentlayer2: true
+  esbuild: true
+  sharp: true
+  # core-js only prints a postinstall banner; protobufjs's script is an
+  # optional codegen step nothing here uses.
+  core-js: false
+  protobufjs: false
