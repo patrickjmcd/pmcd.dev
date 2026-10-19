@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/patrickjmcd/pmcd.dev/compare/v1.3.2...v1.3.3) (2026-10-19)
+
+
+### Bug Fixes
+
+* **deps:** update npm non-major dependencies ([#75](https://github.com/patrickjmcd/pmcd.dev/issues/75)) ([2169010](https://github.com/patrickjmcd/pmcd.dev/commit/2169010ddc390d4a0c156332e1e1c68b2cf2a5be))
+
 ## [1.3.2](https://github.com/patrickjmcd/pmcd.dev/compare/v1.3.1...v1.3.2) (2026-10-15)
 
 
